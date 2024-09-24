@@ -50,7 +50,7 @@ const Blog = () => {
 
   return (
     <>
-      <div className="text-center bold">UNDER MAINTENANCE</div>
+      <div className="text-center font-bold">UNDER MAINTENANCE</div>
       <div className="bg-gray-100 p-6">
         <h2 className="text-lg font-bold mb-4">Comments</h2>
 
