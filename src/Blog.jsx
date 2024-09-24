@@ -5,6 +5,7 @@ import { AuthContext } from "./context/AuthContext";
 const Blog = () => {
   const [posts, Setposts] = useState([]);
   const { currentUser } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   const apiUrl = import.meta.env.VITE_BACKVER;
 
@@ -36,10 +37,16 @@ const Blog = () => {
         Setposts(formattedData);
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false); // Set loading to false after fetch
       }
     }
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return <div className="text-center">Loading...</div>; // Render loading indicator
+  }
 
   return (
     <>
