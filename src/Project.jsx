@@ -14,8 +14,9 @@ const Project = () => {
 
   useEffect(() => {
     async function fetchData() {
+      const apiUrl = import.meta.env.VITE_BACKVER;
       try {
-        const res = await axios.get(`/api/projects/${id}`);
+        const res = await axios.get(`${apiUrl}/api/projects/${id}`);
         console.log(res.data);
         Setproject(res.data);
       } catch (err) {

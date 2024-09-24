@@ -11,8 +11,24 @@ export const AuthContextProvider = ({ children }) => {
   const apiUrl = import.meta.env.VITE_BACKVER;
 
   const login = async (inputs) => {
-    const res = await axios.post(`${apiUrl}/api/auth/login`, inputs);
-    setCurrentUser(res.data);
+    try {
+      // Make the POST request to the login API
+      const res = await axios.post(`${apiUrl}/api/auth/login`, inputs, {
+        withCredentials: true, // Include cookies in the request (if needed)
+      });
+
+      // Set the current user with the response data
+      setCurrentUser(res.data);
+
+      console.log("Login successful:", res.data); // Log success message
+    } catch (error) {
+      // Handle errors (e.g., show a notification or alert)
+      console.error(
+        "Login error:",
+        error.response ? error.response.data : error.message
+      );
+      // You can also set an error state here to display it in the UI if necessary
+    }
   };
 
   const logout = async (inputs) => {
