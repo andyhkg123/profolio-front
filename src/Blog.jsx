@@ -7,12 +7,13 @@ const Blog = () => {
   const { currentUser } = useContext(AuthContext);
 
   const apiUrl = import.meta.env.VITE_BACKVER;
-  console.log("API URL:", apiUrl);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`${apiUrl}/api/posts/`);
+        const res = await fetch(`${apiUrl}/api/posts/`, {
+          withCredentials: true, // Important for sending cookies
+        });
         const newData = await res.json();
 
         // Convert the date format
