@@ -6,6 +6,8 @@ const Blog = () => {
   const [posts, Setposts] = useState([]);
   const { currentUser } = useContext(AuthContext);
 
+  console.log(`${import.meta.env.VITE_BACK_VER}`);
+
   useEffect(() => {
     async function fetchData() {
       try {
