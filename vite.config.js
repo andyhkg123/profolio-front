@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:8080", // Your backend server
+        target: "https://profolio-back.vercel.app/", // Your backend server
         changeOrigin: true,
         secure: false,
       },
