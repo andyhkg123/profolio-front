@@ -8,13 +8,15 @@ export const AuthContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
+  const apiUrl = import.meta.env.VITE_BACKVER;
+
   const login = async (inputs) => {
-    const res = await axios.post("/api/auth/login", inputs);
+    const res = await axios.post(`${apiUrl}/api/auth/login`, inputs);
     setCurrentUser(res.data);
   };
 
   const logout = async (inputs) => {
-    await axios.post("/api/auth/logout");
+    await axios.post(`${apiUrl}/api/auth/logout`);
     setCurrentUser(null);
   };
 

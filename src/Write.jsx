@@ -25,7 +25,9 @@ const Write = () => {
   const handleClick = async (event) => {
     event.preventDefault();
     try {
-      const res = await axios.post("/api/posts/addpost", comment);
+      const apiUrl = import.meta.env.VITE_BACKVER;
+
+      const res = await axios.post(`${apiUrl}/api/posts/addpost`, comment);
       console.log(res.data);
       window.location.reload();
     } catch (error) {
