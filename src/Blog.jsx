@@ -9,7 +9,7 @@ const Blog = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("/api/posts/");
+        const res = await fetch("https://profolio-back.vercel.app/api/posts/");
         const newData = await res.json();
 
         // Convert the date format
