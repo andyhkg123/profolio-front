@@ -9,7 +9,7 @@ const Blog = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`${process.env.BACK_VER}/api/posts/`);
+        const res = await fetch(`${import.meta.env.VITE_BACK_VER}/api/posts/`);
         const newData = await res.json();
 
         // Convert the date format
