@@ -6,13 +6,13 @@ const Blog = () => {
   const [posts, Setposts] = useState([]);
   const { currentUser } = useContext(AuthContext);
 
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_BACKVER;
   console.log("API URL:", apiUrl);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACK_VER}/api/posts/`);
+        const res = await fetch(`${apiUrl}/api/posts/`);
         const newData = await res.json();
 
         // Convert the date format
