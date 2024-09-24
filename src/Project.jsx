@@ -1,30 +1,33 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const Project = () => {
-  const [project, Setproject] = useState("");
-  console.log(project);
+  const [project, setProject] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   const cat = useLocation().pathname;
   const id = cat.split("/")[2];
-
-  console.log(project.video_link);
 
   useEffect(() => {
     async function fetchData() {
       const apiUrl = import.meta.env.VITE_BACKVER;
       try {
         const res = await axios.get(`${apiUrl}/api/projects/${id}`);
-        console.log(res.data);
-        Setproject(res.data);
+        setProject(res.data);
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false); // Set loading to false after fetch
       }
     }
     fetchData();
   }, [id]);
+
+  if (isLoading) {
+    return <div className="text-center">Loading...</div>; // Render loading indicator
+  }
+
   return (
     <>
       <h1 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
@@ -50,7 +53,7 @@ const Project = () => {
             alt="Project Display"
           />
         </div>
-        {project.display_three ? (
+        {project.display_three && (
           <div className="flex justify-center items-center h-screen">
             <img
               className="text-center"
@@ -58,11 +61,9 @@ const Project = () => {
               alt="Project Display"
             />
           </div>
-        ) : (
-          ""
         )}
 
-        {project.display_four ? (
+        {project.display_four && (
           <div className="flex justify-center items-center h-screen">
             <img
               className="text-center"
@@ -70,57 +71,47 @@ const Project = () => {
               alt="Project Display"
             />
           </div>
-        ) : (
-          ""
         )}
 
-        {project.video_link ? (
+        {project.video_link && (
           <div className="flex justify-center items-center h-screen">
             <video src={project.video_link} width="720" height="680" controls />
           </div>
-        ) : (
-          ""
         )}
       </div>
 
-      {project.git_link ? (
+      {project.git_link && (
         <div className="flex justify-center">
           <a
-            className="flex justify-center items-center bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded-full"
+            className="flex justify-center items-center bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded-full"
             href={project.git_link}
           >
             Click this link to Github
           </a>
         </div>
-      ) : (
-        ""
       )}
       <br />
-      {project.git_back_link ? (
+      {project.git_back_link && (
         <div className="flex justify-center">
           <a
-            className="flex justify-center items-center bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded-full"
+            className="flex justify-center items-center bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded-full"
             href={project.git_back_link}
           >
-            Click this link to Github(backend)
+            Click this link to Github (backend)
           </a>
         </div>
-      ) : (
-        ""
       )}
       <br />
 
-      {project.deployment ? (
+      {project.deployment && (
         <div className="flex justify-center">
           <a
-            className="flex justify-center items-center bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded-full"
+            className="flex justify-center items-center bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded-full"
             href={project.deployment}
           >
             Click this link to deployment
           </a>
         </div>
-      ) : (
-        ""
       )}
     </>
   );
