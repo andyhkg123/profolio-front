@@ -27,7 +27,9 @@ const Write = () => {
     try {
       const apiUrl = import.meta.env.VITE_BACKVER;
 
-      const res = await axios.post(`${apiUrl}/api/posts/addpost`, comment);
+      const res = await axios.post(`${apiUrl}/api/posts/addpost`, comment, {
+        withCredentials: true, // This is important for sending cookies
+      });
       console.log(res.data);
       window.location.reload();
     } catch (error) {
