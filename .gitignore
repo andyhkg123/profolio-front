@@ -8,6 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 *.env.development
 *.env.production
+.env.development
+.env.production
 
 node_modules
 dist
