@@ -24,7 +24,7 @@ const Register = () => {
     try {
       const apiUrl = import.meta.env.VITE_BACKVER;
 
-      const res = await axios.post(`/api/auth/register`, user);
+      const res = await axios.post(`${apiUrl}/api/auth/register`, user);
       console.log(res.data);
       navigate("/");
       SeterrMsg("");

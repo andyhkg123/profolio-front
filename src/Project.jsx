@@ -13,7 +13,7 @@ const Project = () => {
     async function fetchData() {
       const apiUrl = import.meta.env.VITE_BACKVER;
       try {
-        const res = await axios.get(`/api/projects/${id}`);
+        const res = await axios.get(`${apiUrl}/api/projects/${id}`);
         setProject(res.data);
       } catch (err) {
         console.log(err);
