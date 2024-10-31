@@ -13,8 +13,13 @@ const Blog = () => {
     async function fetchData() {
       try {
         const res = await fetch(`${apiUrl}/api/posts/`, {
-          withCredentials: true, // Important for sending cookies
+          method: "GET",
+          credentials: "include", // Important for sending cookies
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
+
         const newData = await res.json();
 
         // Convert the date format
