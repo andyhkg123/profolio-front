@@ -27,6 +27,7 @@ const Write = () => {
         withCredentials: true, // Include cookies in the request
         headers: {
           "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
         },
       });
       console.log(res.data);
